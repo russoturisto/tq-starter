@@ -1,0 +1,24 @@
+<ion-header>
+	<app-page-header [title]="Goals">
+    <ion-buttons end>
+      <button ion-button (click)="addGoal()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </app-page-header>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let goal of goals" (click)="goalTapped($event, goal)">
+      <ion-icon [name]="goal.icon" item-left></ion-icon>
+      {{goal.name}}
+      <div class="item-note" item-right>
+        {{goal.description}}
+      </div>
+    </button>
+  </ion-list>
+  <div *ngIf="selectedGoal" padding>
+    You navigated here from <b>{{selectedGoal.name}}</b>
+  </div>
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header>
+	<app-page-header [title]="Goal"></app-page-header>
+</ion-header>
+<ion-content padding>
+
+  <form #goalForm="ngForm" novalidate>
+    <ion-list no-lines>
+      <ion-item>
+        <ion-label stacked color="primary">Goal Name</ion-label>
+        <ion-input
+          [(ngModel)]="goal.name"
+          #goalName="ngModel"
+          autocapitalize="off"
+          name="goalName"
+          required
+          spellcheck="false"
+          type="text"
+        >
+        </ion-input>
+      </ion-item>
+      <p ion-text [hidden]="goalName.valid || submitted == false" color="danger" padding-left>
+        Goal Name is required
+      </p>
+
+      <ion-item>
+        <ion-label color="primary">Accomplished</ion-label>
+        <ion-toggle [(ngModel)]="goal.accomplished" name="goalAccomplished"></ion-toggle>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label stacked color="primary">Goal Description</ion-label>
+        <ion-textarea
+          [(ngModel)]="goal.description"
+          name="goalDescription"
+          required
+          rows="3"
+        >
+        </ion-textarea>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-icon name="calendar" item-left></ion-icon>
+        <ion-label stacked>Due Date</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="goal.dueDate" name="goalDueDate"></ion-datetime>
+      </ion-item>
+    </ion-list>
+
+    <ion-row responsive-sm>
+      <ion-col>
+        <button ion-button (click)="submit(goalForm)" type="submit" block>Save</button>
+      </ion-col>
+      <!--
+      <ion-col>
+        <button ion-button (click)="onSignup()" color="light" block>Signup</button>
+      </ion-col>
+      -->
+    </ion-row>
+  </form>
+
+</ion-content>
